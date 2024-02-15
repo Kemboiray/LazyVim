@@ -1,10 +1,8 @@
 -- Overrides
+
 return {
   {
     "rcarriga/nvim-notify",
-    -- opts = {
-    --   background_color = "#000000",
-    -- },
     opts = {
       background_colour = "#000000",
       fps = 30,
@@ -31,8 +29,33 @@ return {
   {
     "folke/noice.nvim",
     opts = {
-      cmdline = {
-        view = "cmdline",
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+        hover = { silent = true },
+      },
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            any = {
+              { find = "%d+L, %d+B" },
+              { find = "; after #%d+" },
+              { find = "; before #%d+" },
+            },
+          },
+          view = "mini",
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+        lsp_doc_border = true,
       },
     },
   },
@@ -82,15 +105,25 @@ return {
   },
 
   {
-    "neovim/nvim-lspconfig",
+    "folke/which-key.nvim",
     opts = {
-      servers = {
-        pyright = {},
+      window = {
+        border = "none", -- none, single, double, shadow
+        position = "bottom", -- bottom, top
+        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
+        padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
+        winblend = 0, -- value between 0-100 0 for fully opaque and 100 for fully transparent
+        zindex = 1000, -- positive value to position WhichKey above other floating windows.
       },
-      setup = {},
     },
   },
 
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      ui = { border = "single" },
+    },
+  },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -103,7 +136,8 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-emoji",
+      { "hrsh7th/cmp-emoji" },
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -115,6 +149,7 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+      local format_kinds = opts.formatting.format
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
@@ -139,7 +174,23 @@ return {
             fallback()
           end
         end, { "i", "s" }),
+        ["<Down>"] = cmp.mapping(function(fallback)
+          cmp.close()
+          fallback()
+        end, { "i" }),
+        ["<Up>"] = cmp.mapping(function(fallback)
+          cmp.close()
+          fallback()
+        end, { "i" }),
       })
+      opts.window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      }
+      opts.formatting.format = function(entry, vim_item)
+        format_kinds(entry, vim_item)
+        return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
+      end
     end,
   },
 }

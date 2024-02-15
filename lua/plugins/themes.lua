@@ -11,7 +11,7 @@ return {
         -- Value is any valid attr-list value for `:help nvim_set_hl`
         comments = { italic = true },
         keywords = { italic = true },
-        functions = {},
+        functions = { bold = true },
         variables = {},
         -- Background styles. Can be "dark", "transparent" or "normal"
         sidebars = "transparent", -- style for sidebars, see below
@@ -39,10 +39,27 @@ return {
   {
     "Tsuzat/NeoSolarized.nvim",
     lazy = true, -- make sure we load this during startup if it is your main colorscheme
-    -- priority = 1000, -- make sure to load this before all the other start plugins
-    -- config = function()
-    --   vim.cmd([[ colorscheme NeoSolarized ]])
-    -- end,
+    -- priority = 1000,
+    opts = {
+      style = "dark", -- "dark" or "light"
+      transparent = true, -- true/false; Enable this to disable setting the background color
+      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+      enable_italics = true, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
+      styles = {
+        -- Style to be applied to different syntax groups
+        comments = { italic = true },
+        keywords = { italic = true },
+        functions = { bold = true },
+        variables = {},
+        string = { italic = true },
+        underline = true, -- true/false; for global underline
+        undercurl = true, -- true/false; for global undercurl
+      },
+      -- Add specific hightlight groups
+      on_highlights = function(highlights, colors)
+        -- highlights.Include.fg = colors.red -- Using `red` foreground for Includes
+      end,
+    },
   },
 
   {
@@ -50,10 +67,10 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "macchiato", -- latte, frappe, macchiato, mocha
+      flavour = "mocha", -- latte, frappe, macchiato, mocha
       background = { -- :h background
         light = "latte",
-        dark = "macchiato",
+        dark = "mocha",
       },
       transparent_background = true, -- disables setting the background color.
       show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
@@ -71,7 +88,7 @@ return {
         comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
         loops = {},
-        functions = {},
+        functions = { "bold" },
         keywords = {},
         strings = {},
         variables = {},
@@ -86,13 +103,17 @@ return {
       integrations = {
         cmp = true,
         gitsigns = true,
+        neogit = true,
+        neotree = true,
         nvimtree = false,
         treesitter = true,
+        noice = true,
         notify = true,
         mini = {
           enabled = true,
           indentscope_color = "",
         },
+        which_key = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     },
@@ -121,7 +142,9 @@ return {
       inverse = true, -- invert background for search, diffs, statuslines and errors
       contrast = "hard", -- can be "hard", "soft" or empty string
       -- palette_overrides = {},
-      -- overrides = {},
+      -- overrides = {
+      --   Pmenu = { bg = "NONE" },
+      -- },
       dim_inactive = false,
       transparent_mode = true,
     },
@@ -131,7 +154,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight",
+      colorscheme = "catppuccin",
     },
   },
 }

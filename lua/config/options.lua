@@ -5,12 +5,12 @@
 vim.opt.colorcolumn = "80"
 vim.opt.autochdir = true
 vim.opt.wrap = true
+vim.opt.pumblend = 0
 
 vim.diagnostic.config({
   virtual_text = false,
   float = { border = "single" },
 })
-
 -- Show line diagnostics automatically in hover window
 -- vim.o.updatetime = 250
 -- vim.diagnostic.open_float()

@@ -11,4 +11,9 @@ wk.register({
     e = { "<cmd>Copilot enable<cr>", "Copilot enable" },
     s = { "<cmd>Copilot status<cr>", "Copilot status" },
   },
-}, { prefix = "<leader>" })
+  g = {
+    name = "git",
+    n = { "<cmd>Neogit<cr>", "Neogit" },
+    ht = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle current line blame" },
+  },
+}, { prefix = "<leader>", mode = "n" })
