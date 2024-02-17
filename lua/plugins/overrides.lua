@@ -65,8 +65,9 @@ return {
     opts = {
       options = {
         icons_enabled = true,
-        theme = "powerline_dark",
-        component_separators = {}, -- { left = "", right = "" },
+        theme = "auto",
+        component_separators = {},
+        { left = "", right = "" },
         section_separators = {}, -- { left = "", right = "" },
         disabled_filetypes = {
           statusline = {},
@@ -135,9 +136,11 @@ return {
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
+    event = { "InsertEnter", "CmdLineEnter" },
     dependencies = {
       { "hrsh7th/cmp-emoji" },
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+      { "hrsh7th/cmp-cmdline" },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -150,6 +153,21 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
       local format_kinds = opts.formatting.format
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
