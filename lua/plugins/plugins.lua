@@ -1,23 +1,5 @@
 return {
   {
-    "christoomey/vim-tmux-navigator",
-    cmd = {
-      "TmuxNavigateLeft",
-      "TmuxNavigateDown",
-      "TmuxNavigateUp",
-      "TmuxNavigateRight",
-      "TmuxNavigatePrevious",
-    },
-    keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-    },
-  },
-
-  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
@@ -57,10 +39,10 @@ return {
     build = ":TSUpdate",
     config = function ()
       require 'nvim-treesitter.install'.prefer_git = true
-      require 'nvim-treesitter.install'.compilers = { "clang", "gcc" }
+      require 'nvim-treesitter.install'.compilers = { "clang" }
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "html" },
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "typescript", "html" },
           sync_install = false,
           highlight = { enable = true },
           indent = { enable = true },  
