@@ -37,17 +37,17 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    config = function ()
-      require 'nvim-treesitter.install'.prefer_git = true
-      require 'nvim-treesitter.install'.compilers = { "clang" }
+    config = function()
+      require("nvim-treesitter.install").prefer_git = true
+      require("nvim-treesitter.install").compilers = { "clang" }
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "typescript", "html" },
-          sync_install = false,
-          highlight = { enable = true },
-          indent = { enable = true },  
-        })
-    end
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "typescript", "html" },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
   },
   -- {
   --   "nvim-telescope/telescope-ui-select.nvim",
