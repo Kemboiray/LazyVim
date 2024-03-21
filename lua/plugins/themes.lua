@@ -1,4 +1,147 @@
+local theme = "kanagawa"
+local transparency = true
+local gruvbox_overrides = {}
+if vim.g.neovide then
+  theme = "kanagawa"
+  -- transparency = false
+  gruvbox_overrides = { Normal = { bg = "#0f151e" } } -- "#0B151B"
+end
+
 return {
+  {
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        compile = false, -- enable compiling the colorscheme
+        undercurl = true, -- enable undercurls
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = true, -- do not set background color
+        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
+        colors = { -- add/modify theme and palette colors
+          palette = {},
+          theme = {
+            wave = {},
+            lotus = {},
+            dragon = {},
+            all = { ui = {
+              bg_gutter = "none",
+            } },
+          },
+        },
+        overrides = function(colors) -- add/modify highlights
+          return {
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = colors.theme.ui.fg_dim, bg = colors.theme.ui.bg_m3 },
+
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            -- LazyNormal = { bg = colors.theme.ui.bg_m3, fg = colors.theme.ui.fg_dim },
+            -- MasonNormal = { bg = colors.theme.ui.bg_m3, fg = colors.theme.ui.fg_dim },
+            -- TelescopeTitle = { fg = colors.theme.ui.special, bold = true },
+            -- TelescopePromptNormal = { bg = colors.theme.ui.bg_p1 },
+            TelescopePromptBorder = { fg = colors.theme.ui.bg_p1, bg = "none" },
+            -- TelescopeResultsNormal = { fg = colors.theme.ui.fg_dim, bg = colors.theme.ui.bg_m1 },
+            TelescopeResultsBorder = { fg = colors.theme.ui.bg_m1, bg = "none" },
+            -- TelescopePreviewNormal = { bg = colors.theme.ui.bg_dim },
+            TelescopePreviewBorder = { bg = "none", fg = colors.theme.ui.bg_dim },
+          }
+        end,
+        theme = "wave", -- Load "wave" theme when 'background' option is not set
+        background = { -- map the value of 'background' option to a theme
+          dark = "wave", -- try "dragon" !
+          light = "lotus",
+        },
+      })
+    end,
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local palette = require("nordic.colors")
+      require("nordic").setup({
+        -- This callback can be used to override the colors used in the palette.
+        -- on_palette = function(palette)
+        --   return palette
+        -- end,
+        -- Enable bold keywords.
+        bold_keywords = true,
+        -- Enable italic comments.
+        italic_comments = true,
+        -- Enable general editor background transparency.
+        transparent_bg = true,
+        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
+        styles = {
+          -- Style to be applied to different syntax groups
+          -- Value is any valid attr-list value for `:help nvim_set_hl`
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = { bold = true },
+          variables = {},
+          -- Background styles. Can be "dark", "transparent" or "normal"
+          sidebars = "transparent", -- style for sidebars, see below
+          floats = "transparent", -- style for floating windows
+        },
+        -- Enable brighter float border.
+        bright_border = false,
+        -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+        reduced_blue = true,
+        -- Swap the dark background with the normal one.
+        swap_backgrounds = false,
+        -- Override the styling of any highlight group.
+        override = {
+          Normal = { bg = "#0f151e" },
+          TelescopePromptTitle = {
+            fg = palette.red.bright,
+            bg = palette.green.base,
+            italic = true,
+            underline = true,
+            sp = palette.yellow.dim,
+            undercurl = false,
+          },
+        },
+        -- Cursorline options.  Also includes visual/selection.
+        cursorline = {
+          -- Bold font in cursorline.
+          bold = false,
+          -- Bold cursorline number.
+          bold_number = true,
+          -- Available styles: 'dark', 'light'.
+          theme = "dark",
+          -- Blending the cursorline bg with the buffer bg.
+          blend = 0.85,
+        },
+        noice = {
+          -- Available styles: `classic`, `flat`.
+          style = "classic",
+        },
+        telescope = {
+          -- Available styles: `classic`, `flat`.
+          style = "flat",
+        },
+        leap = {
+          -- Dims the backdrop when using leap.
+          dim_backdrop = false,
+        },
+        ts_context = {
+          -- Enables dark background for treesitter-context window
+          dark_background = true,
+        },
+      })
+    end,
+  },
   {
     "folke/tokyonight.nvim",
     opts = {
@@ -32,32 +175,8 @@ return {
       --- function will be called with a Highlights and ColorScheme table
       ---@param highlights Highlights
       ---@param colors ColorScheme
-      on_highlights = function(highlights, colors) end,
-    },
-  },
-
-  {
-    "Tsuzat/NeoSolarized.nvim",
-    lazy = true, -- make sure we load this during startup if it is your main colorscheme
-    -- priority = 1000,
-    opts = {
-      style = "dark", -- "dark" or "light"
-      transparent = true, -- true/false; Enable this to disable setting the background color
-      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-      enable_italics = true, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
-      styles = {
-        -- Style to be applied to different syntax groups
-        comments = { italic = true },
-        keywords = { italic = true },
-        functions = { bold = true },
-        variables = {},
-        string = { italic = true },
-        underline = true, -- true/false; for global underline
-        undercurl = true, -- true/false; for global undercurl
-      },
-      -- Add specific hightlight groups
       on_highlights = function(highlights, colors)
-        -- highlights.Include.fg = colors.red -- Using `red` foreground for Includes
+        highlights.Normal = gruvbox_overrides.Normal
       end,
     },
   },
@@ -72,7 +191,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = true, -- disables setting the background color.
+      transparent_background = transparency, -- disables setting the background color.
       show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
       term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
@@ -99,7 +218,7 @@ return {
         operators = {},
       },
       -- color_overrides = {},
-      -- custom_highlights = {},
+      custom_highlights = gruvbox_overrides,
       integrations = {
         cmp = true,
         gitsigns = true,
@@ -140,13 +259,11 @@ return {
       invert_tabline = false,
       invert_intend_guides = false,
       inverse = true, -- invert background for search, diffs, statuslines and errors
-      contrast = "hard", -- can be "hard", "soft" or empty string
+      contrast = "soft", -- can be "hard", "soft" or empty string
       -- palette_overrides = {},
-      -- overrides = {
-      --   Pmenu = { bg = "NONE" },
-      -- },
+      overrides = gruvbox_overrides,
       dim_inactive = false,
-      transparent_mode = true,
+      transparent_mode = transparency,
     },
   },
 
@@ -154,7 +271,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = theme,
     },
   },
 }

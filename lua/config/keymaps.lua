@@ -13,7 +13,13 @@ wk.register({
   },
   g = {
     name = "git",
-    n = { "<cmd>Neogit<cr>", "Neogit" },
+    -- n = { "<cmd>Neogit<cr>", "Neogit" },
     ht = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Toggle current line blame" },
   },
+  -- r = {
+  --   name = "rest",
+  --   r = { "<Plug>RestNvim", "RestNvim" },
+  --   p = { "<Plug>RestNvimPreview", "RestNvimPreview" },
+  --   l = { "<Plug>RestNvimLast", "RestNvimLast" },
+  -- },
 }, { prefix = "<leader>", mode = "n" })

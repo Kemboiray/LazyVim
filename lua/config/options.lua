@@ -6,6 +6,8 @@ vim.opt.colorcolumn = "80"
 vim.opt.autochdir = true
 vim.opt.wrap = true
 vim.opt.pumblend = 0
+vim.opt.shell = "nu.exe"
+-- vim.opt.shell = "C:/tools/msys64/msys2_shell.cmd -use-full-path -defterm -here -no-start -ucrt64 -shell zsh"
 
 vim.diagnostic.config({
   virtual_text = false,

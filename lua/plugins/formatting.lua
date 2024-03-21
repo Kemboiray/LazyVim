@@ -12,10 +12,11 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       python = { "isort", "yapf" },
-      javascript = { { "prettierd", "prettier" } }, -- Configured using none-ls
-      typescript = { { "prettierd", "prettier" } }, -- Configured using none-ls
-      javascriptreact = { { "prettierd", "prettier" } }, -- Configured using none-ls
-      typescriptreact = { { "prettierd", "prettier" } }, -- Configured using none-ls
+      javascript = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
+      javascriptreact = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
+      html = { { "prettierd", "prettier" } },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
