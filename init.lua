@@ -3,7 +3,6 @@ if vim.g.vscode then
 else
   -- Neovide
   if vim.g.neovide then
-    vim.o.guifont = "FiraCode Nerd Font Mono:style=Medium:h11"
     vim.o.linespace = 0
     vim.g.neovide_scale_factor = 1.0
     -- vim.g.neovide_transparency = 0.0
@@ -12,9 +11,11 @@ else
     vim.g.neovide_light_angle_degrees = 45
     vim.g.neovide_light_radius = 5
     vim.g.neovide_hide_mouse_when_typing = true
+    vim.g.neovide_cursor_animation_length = 0
+    vim.g.neovide_scroll_animation_length = 0
     -- vim.g.neovide_fullscreen = true
     vim.g.neovide_theme = "dark"
-    vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", {})
+    vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", { silent = true })
     vim.cmd("cd ~/Projects/")
   end
   -- ordinary Neovim

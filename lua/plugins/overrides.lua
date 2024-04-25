@@ -5,6 +5,40 @@ local lualine_theme = "auto"
 -- end
 
 return {
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  { "echasnovski/mini.pairs", enabled = false },
+  {
+    "echasnovski/mini.files",
+    opts = {
+      windows = {
+        preview = true,
+        width_focus = 30,
+        width_preview = 30,
+      },
+      options = {
+        -- Whether to use for editing directories
+        -- Disabled by default in LazyVim because neo-tree is used for that
+        use_as_default_explorer = false,
+      },
+    },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    keys = {
+      { "<leader>Ct", "<cmd>Copilot toggle<cr>", desc = "Toggle copilot" },
+      { "<leader>Ce", "<cmd>Copilot enable<cr>", desc = "Enable copilot" },
+      { "<leader>Cd", "<cmd>Copilot disable<cr>", desc = "Disable copilot" },
+      { "<leader>Cs", "<cmd>Copilot status<cr>", desc = "Copilot status" },
+    },
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    cmd = "Gitsigns",
+    keys = {
+      { "<leader>ght", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
+    },
+  },
   {
     "telescope.nvim",
     dependencies = {
@@ -155,6 +189,41 @@ return {
       { "hrsh7th/cmp-emoji" },
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
       { "hrsh7th/cmp-cmdline" },
+
+      -- autopairing of (){}[] etc
+      {
+        "windwp/nvim-autopairs",
+        -- opts = {
+        --   fast_wrap = {},
+        --   disable_filetype = { "TelescopePrompt", "vim" },
+        -- },
+        opts = {
+          disable_filetype = { "TelescopePrompt", "spectre_panel", "vim" },
+          disable_in_macro = true, -- disable when recording or executing a macro
+          disable_in_visualblock = false, -- disable when insert after visual block mode
+          disable_in_replace_mode = true,
+          ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
+          enable_moveright = true,
+          enable_afterquote = true, -- add bracket pairs after quote
+          enable_check_bracket_line = true, --- check bracket in same line
+          enable_bracket_in_quote = true, --
+          enable_abbr = false, -- trigger abbreviation
+          break_undo = true, -- switch for basic rule break undo sequence
+          check_ts = false,
+          map_cr = true,
+          map_bs = true, -- map the <BS> key
+          map_c_h = false, -- Map the <C-h> key to delete a pair
+          map_c_w = false, -- map <c-w> to delete a pair if possible
+        },
+
+        config = function(_, opts)
+          require("nvim-autopairs").setup(opts)
+
+          -- setup cmp for autopairs
+          local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+          require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        end,
+      },
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)

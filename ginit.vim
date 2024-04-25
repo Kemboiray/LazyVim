@@ -4,7 +4,7 @@ set mouse=a
 " Set Editor Font
 if exists(':GuiFont')
     " Use GuiFont! to ignore font errors
-    GuiFont! JetBrainsMono NFM:h11:sb
+    GuiFont! FiraCode Nerd\ Font\ Mono:h11:sb
 endif
 
 " Disable GUI Tabline
@@ -18,8 +18,18 @@ if exists(':GuiPopupmenu')
 endif
 
 " Enable GUI ScrollBar
-if exists(':GuiScrollBar')
-    GuiScrollBar 1
+" if exists(':GuiScrollBar')
+"     GuiScrollBar 0
+" endif
+
+if exists(':GuiAdaptiveColor')
+   GuiAdaptiveColor 1
+elseif exists(':GuiAdaptiveStyle')
+  GuiAdaptiveStyle Fusion
+endif
+
+if exists(':GuiRenderLigatures')
+  GuiRenderLigatures 1
 endif
 
 " Right Click Context Menu (Copy-Cut-Paste)
@@ -27,3 +37,4 @@ nnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>
 inoremap <silent><RightMouse> <Esc>:call GuiShowContextMenu()<CR>
 xnoremap <silent><RightMouse> :call GuiShowContextMenu()<CR>gv
 snoremap <silent><RightMouse> <C-G>:call GuiShowContextMenu()<CR>gv
+cd "~/Projects/"

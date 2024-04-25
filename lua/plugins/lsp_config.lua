@@ -4,8 +4,17 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        pyright = {},
+        ruff_lsp = {},
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              disableOrganizeImports = true, -- Using Ruff
+              typeCheckingMode = "off",
+            },
+          },
+        },
         tsserver = {},
+        emmet_language_server = {},
         taplo = {},
         bashls = {},
         tailwindcss = {},

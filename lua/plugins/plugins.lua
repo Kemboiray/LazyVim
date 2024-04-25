@@ -1,5 +1,72 @@
 return {
   {
+    "dgagn/diagflow.nvim",
+    enabled = false,
+    event = "LspAttach", -- This is what I use personnally and it works great
+    opts = {
+      enable = true,
+      max_width = 60, -- The maximum width of the diagnostic messages
+      max_height = 10, -- the maximum height per diagnostics
+      severity_colors = { -- The highlight groups to use for each diagnostic severity level
+        error = "DiagnosticFloatingError",
+        warning = "DiagnosticFloatingWarn",
+        info = "DiagnosticFloatingInfo",
+        hint = "DiagnosticFloatingHint",
+      },
+      format = function(diagnostic)
+        return diagnostic.message
+      end,
+      gap_size = 1,
+      scope = "line", -- 'cursor', 'line' this changes the scope, so instead of showing errors under the cursor, it shows errors on the entire line.
+      padding_top = 0,
+      padding_right = 0,
+      text_align = "right", -- 'left', 'right'
+      placement = "top", -- 'top', 'inline'
+      inline_padding_left = 0, -- the padding left when the placement is inline
+      update_event = { "DiagnosticChanged", "BufReadPost" }, -- the event that updates the diagnostics cache
+      toggle_event = {}, -- if InsertEnter, can toggle the diagnostics on inserts
+      show_sign = false, -- set to true if you want to render the diagnostic sign before the diagnostic message
+      render_event = { "DiagnosticChanged", "CursorMoved" },
+      border_chars = {
+        top_left = "┌",
+        top_right = "┐",
+        bottom_left = "└",
+        bottom_right = "┘",
+        horizontal = "─",
+        vertical = "│",
+      },
+      show_borders = true,
+    },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    opts = {
+      -- size can be a number or function which is passed the current terminal
+      size = function(term)
+        if term.direction == "horizontal" then
+          return 15
+        elseif term.direction == "vertical" then
+          return vim.o.columns * 0.4
+        end
+      end,
+      open_mapping = [[<c-\>]],
+      terminal_mappings = true,
+      insert_mappings = true,
+      start_in_insert = true,
+      shade_terminals = true,
+      direction = "horizontal",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      winbar = {
+        enabled = true,
+        name_formatter = function(term) --  term: Terminal
+          return term.name
+        end,
+      },
+    },
+  },
+  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
@@ -69,63 +136,4 @@ return {
       })
     end,
   },
-
-  -- {
-  --   "rest-nvim/rest.nvim",
-  --   disabled = true,
-  --   dependencies = { { "nvim-lua/plenary.nvim" } },
-  --   ft = "http",
-  --   config = function()
-  --     require("rest-nvim").setup({
-  --       --- Get the same options from Packer setup
-  --       -- Open request results in a horizontal split
-  --       result_split_horizontal = false,
-  --       -- Keep the http file buffer above|left when split horizontal|vertical
-  --       result_split_in_place = false,
-  --       -- stay in current windows (.http file) or change to results window (default)
-  --       stay_in_current_window_after_split = false,
-  --       -- Skip SSL verification, useful for unknown certificates
-  --       skip_ssl_verification = false,
-  --       -- Encode URL before making request
-  --       encode_url = true,
-  --       -- Highlight request on run
-  --       highlight = {
-  --         enabled = true,
-  --         timeout = 150,
-  --       },
-  --       result = {
-  --         -- toggle showing URL, HTTP info, headers at top the of result window
-  --         show_url = true,
-  --         -- show the generated curl command in case you want to launch
-  --         -- the same request via the terminal (can be verbose)
-  --         show_curl_command = false,
-  --         show_http_info = true,
-  --         show_headers = true,
-  --         -- table of curl `--write-out` variables or false if disabled
-  --         -- for more granular control see Statistics Spec
-  --         show_statistics = false,
-  --         -- executables or functions for formatting response body [optional]
-  --         -- set them to false if you want to disable them
-  --         formatters = {
-  --           json = "jq",
-  --           html = function(body)
-  --             return vim.fn.system({ "tidy", "-i", "-q", "-" }, body)
-  --           end,
-  --         },
-  --       },
-  --       -- Jump to request line on run
-  --       jump_to_request = false,
-  --       env_file = ".env",
-  --       -- for telescope select
-  --       env_pattern = "\\.env$",
-  --       env_edit_command = "tabedit",
-  --       custom_dynamic_variables = {},
-  --       yank_dry_run = true,
-  --       search_back = true,
-  --     })
-  --   end,
-  -- },
-  -- {
-  --   "nvim-telescope/telescope-ui-select.nvim",
-  -- },
 }

@@ -9,6 +9,19 @@ end
 
 return {
   {
+    "oxfist/night-owl.nvim",
+    -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    -- priority = 1000,
+    opts = {
+      -- bold = true,
+      -- italics = true,
+      -- underline = true,
+      -- undercurl = true,
+      -- transparent_background = true,
+    },
+    enabled = false,
+  },
+  {
     "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup({
@@ -19,7 +32,7 @@ return {
         keywordStyle = { italic = true },
         statementStyle = { bold = true },
         typeStyle = {},
-        transparent = true, -- do not set background color
+        transparent = transparency, -- do not set background color
         dimInactive = false, -- dim inactive window `:h hl-NormalNC`
         terminalColors = true, -- define vim.g.terminal_color_{0,17}
         colors = { -- add/modify theme and palette colors
@@ -42,7 +55,7 @@ return {
             -- Save an hlgroup with dark background and dimmed foreground
             -- so that you can use it where your still want darker windows.
             -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-            NormalDark = { fg = colors.theme.ui.fg_dim, bg = colors.theme.ui.bg_m3 },
+            NormalDark = { fg = colors.theme.ui.fg_dim, bg = "none" },
 
             -- Popular plugins that open floats will link to NormalFloat by default;
             -- set their background accordingly if you wish to keep them dark and borderless
@@ -61,83 +74,6 @@ return {
         background = { -- map the value of 'background' option to a theme
           dark = "wave", -- try "dragon" !
           light = "lotus",
-        },
-      })
-    end,
-  },
-  {
-    "AlexvZyl/nordic.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      local palette = require("nordic.colors")
-      require("nordic").setup({
-        -- This callback can be used to override the colors used in the palette.
-        -- on_palette = function(palette)
-        --   return palette
-        -- end,
-        -- Enable bold keywords.
-        bold_keywords = true,
-        -- Enable italic comments.
-        italic_comments = true,
-        -- Enable general editor background transparency.
-        transparent_bg = true,
-        terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
-        styles = {
-          -- Style to be applied to different syntax groups
-          -- Value is any valid attr-list value for `:help nvim_set_hl`
-          comments = { italic = true },
-          keywords = { italic = true },
-          functions = { bold = true },
-          variables = {},
-          -- Background styles. Can be "dark", "transparent" or "normal"
-          sidebars = "transparent", -- style for sidebars, see below
-          floats = "transparent", -- style for floating windows
-        },
-        -- Enable brighter float border.
-        bright_border = false,
-        -- Reduce the overall amount of blue in the theme (diverges from base Nord).
-        reduced_blue = true,
-        -- Swap the dark background with the normal one.
-        swap_backgrounds = false,
-        -- Override the styling of any highlight group.
-        override = {
-          Normal = { bg = "#0f151e" },
-          TelescopePromptTitle = {
-            fg = palette.red.bright,
-            bg = palette.green.base,
-            italic = true,
-            underline = true,
-            sp = palette.yellow.dim,
-            undercurl = false,
-          },
-        },
-        -- Cursorline options.  Also includes visual/selection.
-        cursorline = {
-          -- Bold font in cursorline.
-          bold = false,
-          -- Bold cursorline number.
-          bold_number = true,
-          -- Available styles: 'dark', 'light'.
-          theme = "dark",
-          -- Blending the cursorline bg with the buffer bg.
-          blend = 0.85,
-        },
-        noice = {
-          -- Available styles: `classic`, `flat`.
-          style = "classic",
-        },
-        telescope = {
-          -- Available styles: `classic`, `flat`.
-          style = "flat",
-        },
-        leap = {
-          -- Dims the backdrop when using leap.
-          dim_backdrop = false,
-        },
-        ts_context = {
-          -- Enables dark background for treesitter-context window
-          dark_background = true,
         },
       })
     end,
