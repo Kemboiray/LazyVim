@@ -5,7 +5,7 @@ local lualine_theme = "auto"
 -- end
 
 return {
-  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "echasnovski/mini.files",
@@ -304,6 +304,39 @@ return {
         format_kinds(entry, vim_item)
         return require("tailwindcss-colorizer-cmp").formatter(entry, vim_item)
       end
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+      -- { "nushell/tree-sitter-nu" },
+    },
+    build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.install").prefer_git = false
+      require("nvim-treesitter.install").compilers = { "clang" }
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = {
+          "bash",
+          "c",
+          "lua",
+          "vim",
+          "vimdoc",
+          "python",
+          "javascript",
+          "typescript",
+          "html",
+          "regex",
+          "markdown",
+          "markdown_inline",
+          "jsonc",
+          "http",
+        },
+        sync_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
     end,
   },
 }
