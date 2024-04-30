@@ -9,6 +9,7 @@ return {
         fish = { "fish" },
         sh = { "shellcheck" },
         python = { "ruff" },
+        yaml = { "yamllint" },
         -- javascript = { "eslint_d" },
         -- typescript = { "eslint_d" },
         -- javascriptreact = { "eslint_d" },

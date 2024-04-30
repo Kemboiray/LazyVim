@@ -19,6 +19,7 @@ return {
         bashls = {},
         tailwindcss = {},
         html = {},
+        yamlls = {},
       },
       setup = {},
     },
