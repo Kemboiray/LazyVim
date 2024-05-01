@@ -24,4 +24,25 @@ return {
       setup = {},
     },
   },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua_ls",
+        "ruff",
+        "ruff_lsp",
+        "basedpyright",
+        "tsserver",
+        "yamlls",
+        "bashls",
+        "shellcheck",
+        "shfmt",
+        "yamlfmt",
+        "yamllint",
+        "markdownlint",
+        "prettierd",
+        "eslint_d",
+      },
+    },
+  },
 }
