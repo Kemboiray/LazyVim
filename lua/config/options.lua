@@ -7,3 +7,4 @@ vim.opt.autochdir = true
 vim.opt.wrap = true
 vim.opt.pumblend = 0
 vim.o.guifont = "JetBrainsMono Nerd Font Propo:style=Medium:h11"
+-- vim.o.clipboard = "unnamedplus"
