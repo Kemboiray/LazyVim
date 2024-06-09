@@ -4,7 +4,7 @@ return {
     opts = {
       servers = {
         lua_ls = {},
-        ruff_lsp = {},
+        ruff = {},
         basedpyright = {
           settings = {
             basedpyright = {
@@ -20,29 +20,11 @@ return {
         tailwindcss = {},
         html = {},
         yamlls = {},
+        jsonls = {},
+        marksman = {},
+        clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
       },
       setup = {},
-    },
-  },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "lua_ls",
-        "ruff",
-        "ruff_lsp",
-        "basedpyright",
-        "tsserver",
-        "yamlls",
-        "bashls",
-        "shellcheck",
-        "shfmt",
-        "yamlfmt",
-        "yamllint",
-        "markdownlint",
-        "prettierd",
-        "eslint_d",
-      },
     },
   },
 }

@@ -9,23 +9,10 @@ end
 
 return {
   {
-    "oxfist/night-owl.nvim",
-    -- lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    -- priority = 1000,
-    opts = {
-      -- bold = true,
-      -- italics = true,
-      -- underline = true,
-      -- undercurl = true,
-      -- transparent_background = true,
-    },
-    enabled = false,
-  },
-  {
     "rebelot/kanagawa.nvim",
     config = function()
       require("kanagawa").setup({
-        compile = false, -- enable compiling the colorscheme
+        compile = true, -- enable compiling the colorscheme
         undercurl = true, -- enable undercurls
         commentStyle = { italic = true },
         functionStyle = {},

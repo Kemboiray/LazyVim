@@ -1,6 +1,9 @@
 -- Overrides
 local lualine_theme = require("lualine.themes.auto")
 lualine_theme.normal.c.bg = nil
+lualine_theme.insert.c.bg = nil
+lualine_theme.visual.c.bg = nil
+lualine_theme.command.c.bg = nil
 -- if vim.g.neovide then
 --   lualine_theme = "gruvbox-material"
 -- end
@@ -23,16 +26,16 @@ return {
       },
     },
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    keys = {
-      { "<leader>Ct", "<cmd>Copilot toggle<cr>", desc = "Toggle copilot" },
-      { "<leader>Ce", "<cmd>Copilot enable<cr>", desc = "Enable copilot" },
-      { "<leader>Cd", "<cmd>Copilot disable<cr>", desc = "Disable copilot" },
-      { "<leader>Cs", "<cmd>Copilot status<cr>", desc = "Copilot status" },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   keys = {
+  --     { "<leader>Ct", "<cmd>Copilot toggle<cr>", desc = "Toggle copilot" },
+  --     { "<leader>Ce", "<cmd>Copilot enable<cr>", desc = "Enable copilot" },
+  --     { "<leader>Cd", "<cmd>Copilot disable<cr>", desc = "Disable copilot" },
+  --     { "<leader>Cs", "<cmd>Copilot status<cr>", desc = "Copilot status" },
+  --   },
+  -- },
   {
     "lewis6991/gitsigns.nvim",
     cmd = "Gitsigns",
@@ -124,6 +127,10 @@ return {
         options = {
           theme = lualine_theme,
           globalstatus = true,
+          component_separators = {},
+          -- section_separators = {},
+          -- component_separators = { left = ")", right = "(" },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
         },
         sections = {

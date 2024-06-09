@@ -1,5 +1,22 @@
 return {
   {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    opts = {
+      save_path = os.getenv("PWD"),
+      mac_window_bar = true,
+      title = "CodeSnap",
+      code_font_family = "JetBrainsMono Nerd Font",
+      watermark_font_family = "Pacifico",
+      watermark = "CodeSnap",
+      bg_theme = "default",
+      breadcrumbs_separator = "/",
+      has_breadcrumbs = false,
+      has_line_number = false,
+      min_width = 0,
+    },
+  },
+  {
     "dgagn/diagflow.nvim",
     enabled = false,
     event = "LspAttach", -- This is what I use personnally and it works great
@@ -40,6 +57,7 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
+    enabled = false,
     version = "*",
     opts = {
       -- size can be a number or function which is passed the current terminal

@@ -12,12 +12,14 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       yaml = { "yamlfmt" },
+      c = { "clang-format" },
       python = { "ruff_fix", "ruff_format" },
       javascript = { { "prettierd", "prettier" } },
       typescript = { { "prettierd", "prettier" } },
       javascriptreact = { { "prettierd", "prettier" } },
       typescriptreact = { { "prettierd", "prettier" } },
       html = { { "prettierd", "prettier" } },
+      markdown = { "markdownlint" },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
