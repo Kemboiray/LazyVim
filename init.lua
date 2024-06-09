@@ -21,6 +21,6 @@ else
   -- ordinary Neovim
   -- bootstrap lazy.nvim, LazyVim and your plugins
   require("config.lazy")
-  vim.cmd("Copilot disable")
+  -- vim.cmd("silent Copilot disable")
   -- vim.g.node_host_prog = "/Users/Brian/scoop/apps/nodejs-lts/current/bin/neovim-node-host.cmd"
 end
