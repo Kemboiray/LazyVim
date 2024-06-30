@@ -93,7 +93,9 @@ return {
       "nvim-telescope/telescope.nvim", -- optional
     },
     config = true,
-    enabled = false,
+    -- lazy = false,
+    keys = { { "<leader>gn", ":Neogit<cr>", desc = "Neogit" } },
+    -- enabled = false,
   },
 
   {

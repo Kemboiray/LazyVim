@@ -8,7 +8,7 @@ return {
       linters_by_ft = {
         -- fish = { "fish" },
         sh = { "shellcheck" },
-        python = { "ruff", "mypy" },
+        python = { "ruff" },
         yaml = { "yamllint" },
         markdown = { "markdownlint" },
         javascript = { "eslint_d" },

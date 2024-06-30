@@ -4,6 +4,12 @@ lualine_theme.normal.c.bg = nil
 lualine_theme.insert.c.bg = nil
 lualine_theme.visual.c.bg = nil
 lualine_theme.command.c.bg = nil
+local function get_lualine_sep()
+  if os.getenv("WARP_IS_LOCAL_SHELL_SESSION") then
+    return {}
+  end
+  return { left = "", right = "" }
+end
 -- if vim.g.neovide then
 --   lualine_theme = "gruvbox-material"
 -- end
@@ -43,16 +49,16 @@ return {
       { "<leader>ght", "<cmd>Gitsigns toggle_current_line_blame<cr>", desc = "Toggle current line blame" },
     },
   },
-  {
-    "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
-  },
+  -- {
+  --   "telescope.nvim",
+  --   dependencies = {
+  --     "nvim-telescope/telescope-fzf-native.nvim",
+  --     build = "make",
+  --     config = function()
+  --       require("telescope").load_extension("fzf")
+  --     end,
+  --   },
+  -- },
   {
     "rcarriga/nvim-notify",
     opts = {
@@ -130,7 +136,7 @@ return {
           component_separators = {},
           -- section_separators = {},
           -- component_separators = { left = ")", right = "(" },
-          section_separators = { left = "", right = "" },
+          section_separators = get_lualine_sep(),
           disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
         },
         sections = {
