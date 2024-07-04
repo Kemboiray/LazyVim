@@ -1,5 +1,31 @@
 return {
   {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>e",
+        function()
+          require("yazi").yazi()
+        end,
+        desc = "Open the file manager",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>E",
+        function()
+          require("yazi").yazi(nil, vim.fn.getcwd())
+        end,
+        desc = "Open the file manager in nvim's working directory",
+      },
+    },
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = true,
+    },
+  },
+  {
     "mistricky/codesnap.nvim",
     build = "make",
     opts = {
@@ -86,6 +112,7 @@ return {
   },
   {
     "NeogitOrg/neogit",
+    enabled = false,
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
       "sindrets/diffview.nvim", -- optional - Diff integration
@@ -130,7 +157,7 @@ return {
   {
     "laytan/tailwind-sorter.nvim",
     -- lazy = true,
-    enabled = true,
+    enabled = false,
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
     build = "cd formatter && npm i && npm run build",
     config = true,

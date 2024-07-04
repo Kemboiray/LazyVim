@@ -20,7 +20,7 @@ return {
         },
         vtsls = {},
         emmet_language_server = {},
-        taplo = {},
+        -- taplo = {},
         bashls = {},
         tailwindcss = {},
         html = {},

@@ -50,11 +50,11 @@ return {
             -- MasonNormal = { bg = colors.theme.ui.bg_m3, fg = colors.theme.ui.fg_dim },
             -- TelescopeTitle = { fg = colors.theme.ui.special, bold = true },
             -- TelescopePromptNormal = { bg = colors.theme.ui.bg_p1 },
-            TelescopePromptBorder = { fg = colors.theme.ui.bg_p1, bg = "none" },
+            -- TelescopePromptBorder = { fg = colors.theme.ui.bg_p1, bg = "none" },
             -- TelescopeResultsNormal = { fg = colors.theme.ui.fg_dim, bg = colors.theme.ui.bg_m1 },
-            TelescopeResultsBorder = { fg = colors.theme.ui.bg_m1, bg = "none" },
+            -- TelescopeResultsBorder = { fg = colors.theme.ui.bg_m1, bg = "none" },
             -- TelescopePreviewNormal = { bg = colors.theme.ui.bg_dim },
-            TelescopePreviewBorder = { bg = "none", fg = colors.theme.ui.bg_dim },
+            -- TelescopePreviewBorder = { bg = "none", fg = colors.theme.ui.bg_dim },
           }
         end,
         theme = "wave", -- Load "wave" theme when 'background' option is not set

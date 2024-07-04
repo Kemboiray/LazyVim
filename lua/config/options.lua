@@ -6,4 +6,5 @@ vim.opt.colorcolumn = "80"
 vim.opt.autochdir = true
 vim.opt.wrap = true
 vim.opt.pumblend = 0
+vim.opt.scrolloff = 8 -- Lines of context
 -- vim.o.clipboard = "unnamedplus"

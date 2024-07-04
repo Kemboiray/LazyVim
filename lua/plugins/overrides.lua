@@ -15,7 +15,15 @@ end
 -- end
 
 return {
-  -- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  { "nvim-neo-tree/neo-tree.nvim", enabled = false },
+  {
+    "ibhagwan/fzf-lua",
+    opts = {
+      fzf_colors = {
+        ["gutter"] = "-1",
+      },
+    },
+  },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "echasnovski/mini.files",
