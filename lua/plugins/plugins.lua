@@ -9,7 +9,7 @@ return {
         function()
           require("yazi").yazi()
         end,
-        desc = "Open the file manager",
+        desc = "Open yazi (root)",
       },
       {
         -- Open in the current working directory
@@ -17,12 +17,13 @@ return {
         function()
           require("yazi").yazi(nil, vim.fn.getcwd())
         end,
-        desc = "Open the file manager in nvim's working directory",
+        desc = "Open yazi (cwd)",
       },
     },
     opts = {
       -- if you want to open yazi instead of netrw, see below for more info
       open_for_directories = true,
+      floating_window_scaling_factor = 0.95,
     },
   },
   {

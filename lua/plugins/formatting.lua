@@ -9,17 +9,18 @@ return {
     },
     ---@type table<string, conform.FormatterUnit[]>
     formatters_by_ft = {
-      lua = { "stylua" },
-      sh = { "shfmt" },
-      yaml = { "yamlfmt" },
-      c = { "clang-format" },
-      python = { "ruff_fix", "ruff_format" },
+      lua = { { "stylua" } },
+      sh = { { "shfmt" } },
+      yaml = { { "yamlfmt" } },
+      c = { { "clang-format" } },
+      python = { { "ruff_fix", "ruff_format" } },
       javascript = { { "biome" } },
       typescript = { { "biome" } },
       javascriptreact = { { "biome" } },
       typescriptreact = { { "biome" } },
-      html = { { "biome" } },
-      markdown = { "markdownlint" },
+      html = { { "prettierd" } },
+      json = { { "biome" } },
+      markdown = { { "markdownlint" } },
     },
     -- The options you set here will be merged with the builtin formatters.
     -- You can also define any custom formatters here.
