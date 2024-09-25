@@ -7,7 +7,7 @@ local gruvbox_overrides = {
 if vim.g.neovide then
   theme = "kanagawa"
   transparency = true
-  gruvbox_overrides = { Normal = { bg = "NONE" } } -- "#0B151B"
+  gruvbox_overrides = { Normal = { bg = "#0f151e" } } -- "#0B151B"
 end
 return {
   -- {

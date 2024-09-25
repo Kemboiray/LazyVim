@@ -15,7 +15,7 @@ else
     vim.g.neovide_scroll_animation_length = 0
     -- vim.g.neovide_fullscreen = true
     vim.g.neovide_theme = "dark"
-    vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", { silent = true })
+    -- vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", { silent = true })
     vim.cmd("cd ~/Projects/")
   end
   -- ordinary Neovim

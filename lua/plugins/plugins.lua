@@ -1,5 +1,17 @@
 return {
   {
+    "mikesmithgh/kitty-scrollback.nvim",
+    enabled = true,
+    lazy = true,
+    cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
+    event = { "User KittyScrollbackLaunch" },
+    -- version = '*', -- latest stable version, may have breaking changes if major version changed
+    -- version = '^5.0.0', -- pin major version, include fixes and features that do not have breaking changes
+    config = function()
+      require("kitty-scrollback").setup()
+    end,
+  },
+  {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
     keys = {
@@ -28,6 +40,7 @@ return {
   },
   {
     "mistricky/codesnap.nvim",
+    enabled = false,
     build = "make",
     opts = {
       save_path = os.getenv("PWD"),
@@ -45,12 +58,12 @@ return {
   },
   {
     "dgagn/diagflow.nvim",
-    enabled = false,
+    -- enabled = false,
     event = "LspAttach", -- This is what I use personnally and it works great
     opts = {
       enable = true,
-      max_width = 60, -- The maximum width of the diagnostic messages
-      max_height = 10, -- the maximum height per diagnostics
+      max_width = 50, -- The maximum width of the diagnostic messages
+      max_height = 100, -- the maximum height per diagnostics
       severity_colors = { -- The highlight groups to use for each diagnostic severity level
         error = "DiagnosticFloatingError",
         warning = "DiagnosticFloatingWarn",
@@ -68,7 +81,8 @@ return {
       placement = "top", -- 'top', 'inline'
       inline_padding_left = 0, -- the padding left when the placement is inline
       update_event = { "DiagnosticChanged", "BufReadPost" }, -- the event that updates the diagnostics cache
-      toggle_event = {}, -- if InsertEnter, can toggle the diagnostics on inserts
+      -- toggle_event = {}, -- if InsertEnter, can toggle the diagnostics on inserts
+      toggle_event = { "InsertEnter", "InsertLeave" },
       show_sign = false, -- set to true if you want to render the diagnostic sign before the diagnostic message
       render_event = { "DiagnosticChanged", "CursorMoved" },
       border_chars = {
@@ -79,12 +93,12 @@ return {
         horizontal = "─",
         vertical = "│",
       },
-      show_borders = true,
+      show_borders = false,
     },
   },
   {
     "akinsho/toggleterm.nvim",
-    enabled = false,
+    -- enabled = false,
     version = "*",
     opts = {
       -- size can be a number or function which is passed the current terminal
@@ -95,12 +109,16 @@ return {
           return vim.o.columns * 0.4
         end
       end,
-      open_mapping = [[<c-\>]],
+      open_mapping = [[<a-`>]],
       terminal_mappings = true,
       insert_mappings = true,
       start_in_insert = true,
       shade_terminals = true,
-      direction = "horizontal",
+      direction = "float",
+      float_opts = { border = "curved", title_pos = "center" },
+      highlights = {
+        FloatBorder = { guifg = "#002633", guibg = "NONE" },
+      },
       close_on_exit = true,
       shell = vim.o.shell,
       winbar = {
@@ -114,20 +132,21 @@ return {
   {
     "NeogitOrg/neogit",
     enabled = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-
-      "nvim-telescope/telescope.nvim", -- optional
-    },
-    config = true,
-    -- lazy = false,
-    keys = { { "<leader>gn", ":Neogit<cr>", desc = "Neogit" } },
-    -- enabled = false,
+    --   dependencies = {
+    --     "nvim-lua/plenary.nvim", -- required
+    --     "sindrets/diffview.nvim", -- optional - Diff integration
+    --
+    --     "nvim-telescope/telescope.nvim", -- optional
+    --   },
+    --   config = true,
+    --   -- lazy = false,
+    --   keys = { { "<leader>gn", ":Neogit<cr>", desc = "Neogit" } },
+    --   -- enabled = false,
   },
 
   {
     "tpope/vim-fugitive",
+    enabled = false,
   },
   {
     "christoomey/vim-tmux-navigator",
@@ -145,26 +164,5 @@ return {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    opts = {
-      user_default_options = {
-        tailwind = true,
-        css = true,
-      },
-    },
-  },
-  {
-    "laytan/tailwind-sorter.nvim",
-    -- lazy = true,
-    enabled = false,
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim" },
-    build = "cd formatter && npm i && npm run build",
-    config = true,
-    keys = { { "<leader>ct", "<cmd>TailwindSort<cr>", desc = "Sort tailwind classes" } },
-    -- opts = {
-    --   on_save_enabled = true,
-    -- },
   },
 }
