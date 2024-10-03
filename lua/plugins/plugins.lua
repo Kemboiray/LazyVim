@@ -1,4 +1,5 @@
 return {
+  -- { "glacambre/firenvim", build = ":call firenvim#install(0)" },
   {
     "mikesmithgh/kitty-scrollback.nvim",
     enabled = true,

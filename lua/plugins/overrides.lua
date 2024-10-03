@@ -36,6 +36,13 @@ return {
   },
   {
     "mistweaverco/kulala.nvim",
+    keys = {
+      { "<leader>R", false },
+      { "<leader>Rs", "<cmd>lua require('kulala').run()<cr>", desc = "Send the request" },
+      { "<leader>Rt", "<cmd>lua require('kulala').toggle_view()<cr>", desc = "Toggle headers/body" },
+      { "<leader>Rp", "<cmd>lua require('kulala').jump_prev()<cr>", desc = "Jump to previous request" },
+      { "<leader>Rn", "<cmd>lua require('kulala').jump_next()<cr>", desc = "Jump to next request" },
+    },
     opts = {
       split_direction = "vertical",
       default_view = "headers_body",
@@ -56,10 +63,17 @@ return {
   {
     "echasnovski/mini.files",
     opts = {
+      options = {
+        -- Whether to delete permanently or move into module-specific trash
+        -- permanent_delete = false,
+        -- Whether to use for editing directories
+        use_as_default_explorer = false,
+      },
       windows = {
-        preview = false,
-        width_focus = 50,
-        width_nofocus = 40,
+        preview = true,
+        width_focus = 30,
+        width_preview = 90,
+        width_nofocus = 20,
       },
     },
   },
@@ -94,9 +108,9 @@ return {
       -- popupmenu = { backend = "cmp" },
       lsp = {
         override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+          ["vim.lsp.util.stylize_markdown"] = false,
+          ["cmp.entry.get_documentation"] = false,
         },
         hover = { silent = true },
       },

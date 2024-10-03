@@ -1,12 +1,12 @@
-local theme = "catppuccin"
+local theme = "night-owl"
 local transparency = true
 local gruvbox_overrides = {
-  FloatBorder = { fg = "#002633", bg = "NONE" },
+  FloatBorder = { fg = "#002633", bg = "NONE", ctermfg = "NONE", ctermbg = "NONE" },
   TelescopeTitle = { link = "@text" },
 }
 if vim.g.neovide then
-  theme = "kanagawa"
-  transparency = true
+  theme = "night-owl"
+  transparency = false
   gruvbox_overrides = { Normal = { bg = "NONE" } } -- "#0B151B"
 end
 return {
@@ -29,13 +29,24 @@ return {
   --     end,
   -- },
   {
+    "oxfist/night-owl.nvim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      -- load the colorscheme here
+      require("night-owl").setup({
+        transparent_background = true,
+      })
+    end,
+  },
+  {
     "rose-pine/neovim",
     name = "rose-pine",
     config = function()
       require("rose-pine").setup({
         disable_background = true,
         styles = {
-          transparency = true,
+          transparency = transparency,
         },
         highlight_groups = {
           LspInlayHint = { bg = "NONE", blend = 100 },
@@ -78,7 +89,7 @@ return {
             -- Save an hlgroup with dark background and dimmed foreground
             -- so that you can use it where your still want darker windows.
             -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-            NormalDark = { fg = colors.theme.ui.fg_dim, bg = "none" },
+            NormalDark = { fg = colors.theme.ui.fg_dim, bg = "#111111" },
 
             -- Popular plugins that open floats will link to NormalFloat by default;
             -- set their background accordingly if you wish to keep them dark and borderless

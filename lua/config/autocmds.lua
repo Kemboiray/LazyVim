@@ -25,3 +25,4 @@ api.nvim_create_autocmd("User", {
     vim.api.nvim_win_set_config(win_id, config)
   end,
 })
+api.nvim_command("autocmd BufRead,BufNewFile .env* lua vim.diagnostic.disable()")

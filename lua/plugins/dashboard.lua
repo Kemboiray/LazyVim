@@ -1,6 +1,6 @@
 -- stylua: ignore
 local config_center = {
-  { action = "Yazi cwd",                                           desc = " Yazi",            icon = " ", key = "e" },
+  { action = "Explore",                                           desc = " Yazi",            icon = " ", key = "e" },
   { action = 'lua LazyVim.pick()()',                           desc = " Find File",       icon = " ", key = "f" },
   { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
   { action = 'lua LazyVim.pick("oldfiles")()',                 desc = " Recent Files",    icon = " ", key = "r" },

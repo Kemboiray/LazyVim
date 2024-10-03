@@ -17,6 +17,7 @@ else
     vim.g.neovide_theme = "dark"
     -- vim.api.nvim_set_keymap("n", "<F11>", ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>", { silent = true })
     vim.cmd("cd ~/Projects/")
+    vim.g.neovide_floating_corner_radius = 10.0
   end
   -- ordinary Neovim
   -- bootstrap lazy.nvim, LazyVim and your plugins
