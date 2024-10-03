@@ -1,4 +1,4 @@
-local theme = "night-owl"
+local theme = "catppuccin"
 local transparency = true
 local gruvbox_overrides = {
   FloatBorder = { fg = "#002633", bg = "NONE", ctermfg = "NONE", ctermbg = "NONE" },
@@ -30,6 +30,7 @@ return {
   -- },
   {
     "oxfist/night-owl.nvim",
+    enabled = false,
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
