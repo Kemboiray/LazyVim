@@ -1,12 +1,15 @@
 local theme = "catppuccin"
 local transparency = true
+local enable_night = false
 local gruvbox_overrides = {
-  FloatBorder = { fg = "#002633", bg = "NONE", ctermfg = "NONE", ctermbg = "NONE" },
+  FloatBorder = { fg = "#002633", bg = "NONE" },
   TelescopeTitle = { link = "@text" },
+  CursorLine = { bg = "#363646" },
 }
 if vim.g.neovide then
   theme = "night-owl"
   transparency = false
+  enable_night = true
   gruvbox_overrides = { Normal = { bg = "NONE" } } -- "#0B151B"
 end
 return {
@@ -30,13 +33,13 @@ return {
   -- },
   {
     "oxfist/night-owl.nvim",
-    enabled = false,
+    enabled = enable_night,
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
       require("night-owl").setup({
-        transparent_background = true,
+        transparent_background = transparency,
       })
     end,
   },
@@ -193,15 +196,15 @@ return {
       integrations = {
         cmp = true,
         gitsigns = true,
-        neogit = true,
-        neotree = true,
+        neogit = false,
+        neotree = false,
         nvimtree = false,
         treesitter = true,
         noice = true,
         notify = true,
         mini = {
           enabled = true,
-          indentscope_color = "",
+          indentscope_color = "#002633",
         },
         which_key = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)

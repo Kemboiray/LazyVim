@@ -24,6 +24,15 @@ end
 -- end
 
 return {
+  { "folke/persistence.nvim", enabled = false },
+  {
+    "L3MON4D3/LuaSnip",
+    config = function()
+      require("luasnip").filetype_extend("typescript", { "javascript" })
+      require("luasnip").filetype_extend("typescriptreact", { "javascript" })
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
   {
     "akinsho/bufferline.nvim",
     opts = { options = { mode = "buffers" } },
@@ -49,16 +58,6 @@ return {
     },
   },
   { "nvim-neo-tree/neo-tree.nvim", enabled = false },
-  {
-    "ibhagwan/fzf-lua",
-    opts = {
-      fzf_colors = {
-        ["gutter"] = "-1",
-      },
-      winopts = { fullscreen = true },
-      hls = { border = "FloatBorder", preview_border = "FloatBorder", preview_title = "@text" },
-    },
-  },
   { "echasnovski/mini.pairs", enabled = false },
   {
     "echasnovski/mini.files",
@@ -68,6 +67,10 @@ return {
         -- permanent_delete = false,
         -- Whether to use for editing directories
         use_as_default_explorer = false,
+      },
+      mappings = {
+        go_in = "L",
+        go_in_plus = "l",
       },
       windows = {
         preview = true,
@@ -113,6 +116,7 @@ return {
           ["cmp.entry.get_documentation"] = false,
         },
         hover = { silent = true },
+        -- signature = { auto_open = { trigger = false } },
       },
       routes = {
         {
@@ -174,7 +178,7 @@ return {
               },
             },
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            { LazyVim.lualine.pretty_path() },
+            { LazyVim.lualine.pretty_path({ relative = "root", modified_sign = " ●" }) },
           },
           lualine_x = {
           -- stylua: ignore
@@ -236,9 +240,15 @@ return {
 
   {
     "folke/which-key.nvim",
-    opts = {
-      win = { border = "rounded" },
-    },
+    opts = function(_, opts)
+      vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+      opts.spec = {
+        { "<leader>g", group = "Git", icon = { icon = "󰊢 ", color = "orange" } },
+        { "<leader>R", group = "Rest", icon = { icon = "󰌷 ", color = "cyan" } },
+        { "<leader>q", group = "Quit", icon = { icon = " ", color = "red" } },
+      }
+      opts.win = { border = "rounded" }
+    end,
   },
 
   {

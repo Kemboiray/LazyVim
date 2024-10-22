@@ -1,16 +1,12 @@
 return {
   -- { "glacambre/firenvim", build = ":call firenvim#install(0)" },
   {
-    "mikesmithgh/kitty-scrollback.nvim",
-    enabled = true,
-    lazy = true,
-    cmd = { "KittyScrollbackGenerateKittens", "KittyScrollbackCheckHealth" },
-    event = { "User KittyScrollbackLaunch" },
-    -- version = '*', -- latest stable version, may have breaking changes if major version changed
-    -- version = '^5.0.0', -- pin major version, include fixes and features that do not have breaking changes
-    config = function()
-      require("kitty-scrollback").setup()
-    end,
+    "declancm/cinnamon.nvim",
+    version = "*", -- use latest release
+    opts = {
+      -- change default options here
+    },
+    enabled = false,
   },
   {
     "mikavilpas/yazi.nvim",
@@ -18,7 +14,7 @@ return {
     keys = {
       -- 👇 in this section, choose your own keymappings!
       {
-        "<leader>e",
+        "<A-q>",
         function()
           require("yazi").yazi()
         end,
@@ -26,7 +22,7 @@ return {
       },
       {
         -- Open in the current working directory
-        "<leader>E",
+        "<A-S-q>",
         function()
           require("yazi").yazi(nil, vim.fn.getcwd())
         end,

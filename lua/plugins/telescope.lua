@@ -33,7 +33,7 @@ return {
 
     return {
       defaults = {
-        layout_config = { height = 0.95, prompt_position = "top", preview_width = 0.6 },
+        layout_config = { height = 0.99, prompt_position = "top", preview_width = 0.6 },
         prompt_prefix = " ",
         selection_caret = " ",
         -- open files in the first window that is an actual file.
