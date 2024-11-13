@@ -28,4 +28,39 @@ function M.colorize()
   end, 2000)
 end
 
+function M.man()
+  vim.opt.laststatus = 0
+  vim.opt.wrap = false
+end
+
+--[[
+  Creates a table of tables from a list of strings, where each inner table 
+  contains the string and enabled=false flag
+  
+  @param strings (table) List of strings to process
+  @return (table) Table of tables, each containing a string and enabled=false
+  @throws error if input is not a table or contains non-string values
+--]]
+function M.disable_plugins(strings)
+  -- Input validation
+  if type(strings) ~= "table" then
+    error("Input must be a table, got " .. type(strings))
+  end
+
+  local result = {}
+
+  for i, str in ipairs(strings) do
+    -- Validate each element is a string
+    if type(str) ~= "string" then
+      error("All elements must be strings, got " .. type(str) .. " at index " .. i)
+    end
+
+    -- Create new table with string and enabled flag
+    local entry = { str, enabled = false }
+    table.insert(result, entry)
+  end
+
+  return result
+end
+
 return M

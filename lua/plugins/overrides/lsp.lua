@@ -1,3 +1,11 @@
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or "rounded"
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 local servers = {
   lua_ls = {},
   ruff = {},
@@ -44,6 +52,8 @@ local servers = {
   -- marksman = {},
   clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
   lemminx = {},
+  hyprls = {},
+  glsl_analyzer = {},
 }
 return {
   {
@@ -53,7 +63,7 @@ return {
     --
     event = "VeryLazy",
     opts = function(_, opts)
-      require("lspconfig.ui.windows").default_options.border = "rounded"
+      -- require("lspconfig.ui.windows").default_options.border = "rounded"
       opts.servers = servers
       opts.setup = {}
     end,
