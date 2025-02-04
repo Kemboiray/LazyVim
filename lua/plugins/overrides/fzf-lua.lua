@@ -1,11 +1,15 @@
 return {
   "ibhagwan/fzf-lua",
+  keys = {
+    { "<leader>f<Tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
+  },
   opts = {
     fzf_opts = { ["--cycle"] = true },
     fzf_colors = {
       ["gutter"] = "-1",
     },
     winopts = { fullscreen = true, preview = { layout = "vertical" } },
+    fzf_tmux_opts = { ["-p"] = "95%,95%", ["--margin"] = "0,0" },
     keymap = {
       -- Below are the default binds, setting any value in these tables will override
       -- the defaults, to inherit from the defaults change [1] from `false` to `true`

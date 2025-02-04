@@ -9,7 +9,7 @@ return {
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = {},
-      transparent = true, -- do not set background color
+      transparent = (vim.g.neovide and { false } or { true })[1], -- do not set background color
       dimInactive = false, -- dim inactive window `:h hl-NormalNC`
       terminalColors = true, -- define vim.g.terminal_color_{0,17}
       colors = { -- add/modify theme and palette colors
@@ -28,7 +28,7 @@ return {
           NormalFloat = { bg = "none" },
           FloatBorder = { bg = "none", fg = "#89a4bd" },
           FloatTitle = { bg = "none" },
-
+          WinSeparator = { fg = "#89a4bd" },
           -- Save an hlgroup with dark background and dimmed foreground
           -- so that you can use it where your still want darker windows.
           -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark

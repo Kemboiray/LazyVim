@@ -1,7 +1,8 @@
 local custom_highlights = {
-  FloatBorder = { fg = "#002633", bg = "NONE" },
-  TelescopeTitle = { link = "@text" },
-  CursorLine = { bg = "#363646" },
+  FloatBorder = { link = "WinSeparator" },
+  -- FloatBorder = { fg = "#002633", bg = "NONE" },
+  -- TelescopeTitle = { link = "@text" },
+  -- CursorLine = { bg = "#363646" },
 }
 
 return {
@@ -9,12 +10,12 @@ return {
   name = "catppuccin",
   priority = 1000,
   opts = {
-    flavour = "frappe", -- latte, frappe, macchiato, mocha
+    flavour = "macchiato", -- latte, frappe, macchiato, mocha
     background = { -- :h background
       light = "latte",
       dark = "frappe",
     },
-    transparent_background = true, -- disables setting the background color.
+    transparent_background = (vim.g.neovide and { false } or { true })[1], -- disables setting the background color.
     show_end_of_buffer = true, -- shows the '~' characters after the end of buffers
     term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
     dim_inactive = {
@@ -53,7 +54,7 @@ return {
       notify = true,
       mini = {
         enabled = true,
-        indentscope_color = "#002633",
+        indentscope_color = "",
       },
       which_key = true,
       -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)

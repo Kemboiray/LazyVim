@@ -1,6 +1,6 @@
 local enable_night = false
 if vim.g.neovide then
-  enable_night = true
+  enable_night = false
 end
 return {
   "oxfist/night-owl.nvim",

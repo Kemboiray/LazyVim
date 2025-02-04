@@ -1,27 +1,46 @@
--- Overrides
--- local function get_lualine_theme(theme)
---   if theme == "catppuccin" then
---     return theme
---   end
 local lualine_theme = require("lualine.themes.auto")
+
+lualine_theme.normal.a.fg = "#c6d0f6"
+lualine_theme.normal.a.bg = nil
+lualine_theme.normal.b.fg = "#ffaf87"
+lualine_theme.normal.b.bg = nil
+lualine_theme.normal.b.gui = "bold"
 lualine_theme.normal.c.bg = nil
--- lualine_theme.inactive.c.bg = nil
--- lualine_theme.normal.b.gui = "bold"
+
+lualine_theme.insert.a.fg = lualine_theme.insert.a.bg
+lualine_theme.insert.a.bg = nil
+lualine_theme.insert.b.fg = "#ffaf87"
+lualine_theme.insert.b.bg = nil
+lualine_theme.insert.b.gui = "bold"
 lualine_theme.insert.c.bg = nil
+
+lualine_theme.visual.a.fg = lualine_theme.visual.a.bg
+lualine_theme.visual.a.bg = nil
+lualine_theme.visual.b.fg = "#ffaf87"
+lualine_theme.visual.b.bg = nil
+lualine_theme.visual.b.gui = "bold"
 lualine_theme.visual.c.bg = nil
+
+lualine_theme.command.a.fg = lualine_theme.command.a.bg
+lualine_theme.command.a.bg = nil
+lualine_theme.command.b.fg = "#ffaf87"
+lualine_theme.command.b.bg = nil
+lualine_theme.command.b.gui = "bold"
 lualine_theme.command.c.bg = nil
+
+lualine_theme.replace.a.fg = lualine_theme.replace.a.bg
+lualine_theme.replace.a.bg = nil
+lualine_theme.replace.b.fg = "#ffaf87"
+lualine_theme.replace.b.bg = nil
+lualine_theme.replace.b.gui = "bold"
 lualine_theme.replace.c.bg = nil
---   return lualine_theme
--- end
+
 local function get_lualine_sep()
-  if os.getenv("WARP_IS_LOCAL_SHELL_SESSION") then
-    return {}
-  end
-  return { left = "", right = "" }
+  -- if os.getenv("WARP_IS_LOCAL_SHELL_SESSION") then
+  return {}
+  -- end
+  -- return { left = "", right = "" }
 end
--- if vim.g.neovide then
---   lualine_theme = "gruvbox-material"
--- end
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -38,7 +57,7 @@ return {
       options = {
         theme = lualine_theme,
         globalstatus = true,
-        component_separators = {},
+        component_separators = { left = "|", right = "|" },
         -- section_separators = {},
         -- component_separators = { left = ")", right = "(" },
         section_separators = get_lualine_sep(),
@@ -113,6 +132,7 @@ return {
           function()
             return " " .. os.date("%R")
           end,
+          { padding = { left = 1, right = 0 } },
         },
       },
       extensions = { "toggleterm", "trouble", "lazy" },

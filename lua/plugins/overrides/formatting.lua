@@ -19,6 +19,7 @@ return {
       typescriptreact = { "prettierd" },
       html = { "prettierd" },
       json = { "prettierd" },
+      jsonc = { "prettierd" },
       -- markdown = { "markdownlint" },
     },
     -- The options you set here will be merged with the builtin formatters.

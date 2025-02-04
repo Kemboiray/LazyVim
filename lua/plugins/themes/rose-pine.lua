@@ -8,7 +8,7 @@ return {
         transparency = true,
       },
       highlight_groups = {
-        LspInlayHint = { bg = "NONE", blend = 100 },
+        LspInlayHint = { bg = "#00000000", blend = 100 },
         -- VertSplit = { fg = "muted", bg = "muted" },
       },
     })

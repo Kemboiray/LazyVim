@@ -19,7 +19,7 @@ local servers = {
   },
   vtsls = {},
   emmet_language_server = {},
-  -- taplo = {},
+  taplo = {},
   bashls = {},
   tailwindcss = {
     settings = {
@@ -50,7 +50,7 @@ local servers = {
   -- yamlls = {},
   -- jsonls = {},
   -- marksman = {},
-  clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } },
+  -- clangd = { cmd = { "clangd", "--offset-encoding=utf-16" } }, -- configured with :LazyExtras
   lemminx = {},
   hyprls = {},
   glsl_analyzer = {},
@@ -64,6 +64,8 @@ return {
     event = "VeryLazy",
     opts = function(_, opts)
       -- require("lspconfig.ui.windows").default_options.border = "rounded"
+      local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      keys[#keys + 1] = { "<c-k>", false, mode = "i" }
       opts.servers = servers
       opts.setup = {}
     end,

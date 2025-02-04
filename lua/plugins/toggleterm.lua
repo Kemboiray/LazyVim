@@ -18,7 +18,8 @@ return {
     direction = "float",
     float_opts = { border = "curved", title_pos = "center" },
     highlights = {
-      FloatBorder = { guifg = "#002633", guibg = "NONE" },
+      -- FloatBorder = { guifg = "#002633", guibg = "NONE" },
+      FloatBorder = { link = "FloatBorder" },
     },
     close_on_exit = true,
     shell = vim.o.shell,
