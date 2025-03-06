@@ -1,5 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
+  commit = "1176d512b1390f992c775f08dcb155d4e0ba01cf",
   keys = {
     { "<leader>f<Tab>", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
   },
@@ -8,7 +9,7 @@ return {
     fzf_colors = {
       ["gutter"] = "-1",
     },
-    winopts = { fullscreen = true, preview = { layout = "vertical" } },
+    winopts = { width = 1, height = 0.98, preview = { layout = "vertical" } },
     fzf_tmux_opts = { ["-p"] = "95%,95%", ["--margin"] = "0,0" },
     keymap = {
       -- Below are the default binds, setting any value in these tables will override

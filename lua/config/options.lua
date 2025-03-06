@@ -9,6 +9,7 @@ vim.opt.wrap = false
 vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
+vim.cmd("set autochdir")
 
 -- vim.g.lazygit_config = false
 -- vim.opt.guicursor = {

@@ -24,9 +24,9 @@ return {
         cherryPickedCommitBgColor = { fg = "Identifier" },
         cherryPickedCommitFgColor = { fg = "Function" },
         defaultFgColor = { fg = "Normal" },
-        inactiveBorderColor = { fg = "Function", bold = true },
+        inactiveBorderColor = { fg = "Function", bold = false },
         optionsTextColor = { fg = "Function" },
-        searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+        searchingActiveBorderColor = { fg = "MatchParen", bold = false },
         selectedLineBgColor = { bg = "Visual" }, -- set to `default` to have no background colour
         unstagedChangesColor = { fg = "DiagnosticError" },
       },

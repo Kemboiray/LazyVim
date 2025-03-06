@@ -1,6 +1,6 @@
 local theme = "catppuccin"
 if vim.g.neovide then
-  theme = "tokyonight"
+  theme = "tokyonight-night"
 end
 
 return -- Configure LazyVim to load gruvbox
