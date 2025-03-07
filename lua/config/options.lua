@@ -10,7 +10,8 @@ vim.schedule(function()
   vim.opt.clipboard = "unnamedplus"
 end)
 vim.cmd("set autochdir")
-
+vim.g.lazyvim_ruby_lsp = "ruby_lsp"
+vim.g.lazyvim_ruby_formatter = "rubocop"
 -- vim.g.lazygit_config = false
 -- vim.opt.guicursor = {
 --   "n-v:block,i-c-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175",
